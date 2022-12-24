@@ -1,5 +1,7 @@
 {
-    "clientId": "ClientID",
-    "guildId": "GuildID",
-    "token": "Bot-Token"
+    "clientId": "BotID",
+    "guildId": "GuideID",
+    "errChannel": "ErrorChannel",
+    "token": "BotToken",
+    "mongodb": "MongoDB"
 }
