@@ -24,14 +24,15 @@ client.on('ready', async () => {
     let servers = await client.guilds.cache.size
     let servercount = await client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)
     const activities = [
-        `${servers} Servers`,
-        `${servercount} Members`,
+        { name: `${servers} Servers`, type: 3 }, //watching
+        { name: `${servercount} Members`, type: 2}, //listening
+        { name: `you ;-;`, type: 3},
+        { name: `/help`, type: 0} //playing
     ]
+    let i = 0;
     setInterval(() => {
-        const status = activities[Math.floor(Math.random() * activities.length)]
-        client.user.setPresence({
-            activities: [{ name: `${status}`, type: ActivityType.Watching }],
-            status: 'online',
-          });
-    }, 5000)
+        if (i >= activities.length) i = 0
+        client.user.setActivity(activities[i])
+        i++;
+    }, 5000);
 })
