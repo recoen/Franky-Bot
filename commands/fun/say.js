@@ -13,6 +13,7 @@ module.exports = {
 
     async execute(interaction) {
         const msg = interaction.options.getString('input')
-        await interaction.reply(msg)
+        await interaction.reply({ content: `say was successful`, ephemeral: true})
+        await interaction.channel.send(msg)
     }
 }
