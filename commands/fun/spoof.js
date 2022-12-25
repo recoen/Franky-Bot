@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, WebhookClient } = require("discord.js");
+const config = require('../../../config.json')
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -43,7 +44,7 @@ module.exports = {
                 console.log(`**${interaction.username}**, Nothing was found. You or someone else may have renamed the webhook. Please delete the webhook manually. Sorry for the inconvenience`)
                 return;
             }
-            if (!webhook.owner.id == `992309600361660466`) {
+            if (!webhook.owner.id == config.clientId) {
                 console.log(`**${interaction.username}**, Nothing was found. You or someone else may have renamed the webhook. Please delete the webhook manually. Sorry for the inconvenience`)
                 return;
             } else {
