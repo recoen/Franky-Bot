@@ -3,5 +3,6 @@
     "guildId": "",
     "errChannel": "",
     "token": "",
-    "mongodb": ""
+    "mongodb": "",
+    "yourId": ""
 }
