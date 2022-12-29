@@ -21,13 +21,5 @@ module.exports = {
             .setTimestamp()
 
         interaction.reply({ embeds: [embed] })
-
-        const congrats = new EmbedBuilder()
-            .setTitle('🥳Congrats🥳')
-            .setDescription('you have been given Free Nitro')
-
-        if(number = 69420) {
-            interaction.followUp({ embeds: [congrats] })
-        }
     }
 }

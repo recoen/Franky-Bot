@@ -1,24 +1,26 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const moneyschema = require('../../Schema/moneySchema')
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('balance')
-        .setDescription('Shows how much money you have on sunrod')
+        .setDescription('checks how much money you have')
         .addUserOption(option =>
             option
                 .setName('target')
-                .setDescription('get someones balance')
+                .setDescription('see how much another person has')
         ),
+    async execute(interaction) {
+        const user = interaction.options.getUser('target') || interaction.user;
+        const member = interaction.guild.members.cache.get(user.id)
+        const Data = await moneyschema.findOne({ User: member.id })
 
-    async execute(interaction, client) {
-        const user = interaction.options.getUser('target') || interaction.user; return interaction.reply('❌ No user was found');
+        if(!Data) return interaction.reply({ content: `sorry you have no money, send a message to get some`, ephemeral: true})
 
-        const data = await client.sunrod.get({ user: user.id, bypass: true });
+        const money = new EmbedBuilder()
+            .setTitle(`${member.user.username}`)
+            .setDescription(`You have $${Data.Money}`)
 
-        if (!data || data.result !== 0) {
-            interaction.reply(':x: We are sorry but there was a problem with our system... Try again later or contact us in our server.');
-            return console.log(`SunRodAPI gave an error: result code was ${data.result}.`);
-        }
-        interaction.reply(`**${user.tag}** has exactly __${data.data} coins__!`)
+        await interaction.reply({ embeds: [money] })
     }
 }

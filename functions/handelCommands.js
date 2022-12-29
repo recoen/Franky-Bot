@@ -2,6 +2,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
 const config = require('../config.json')
+const color = require('colors')
 
 module.exports = (client) => {
     client.handleCommands = async (commandFolders, path) => {
@@ -21,7 +22,7 @@ module.exports = (client) => {
 
         (async () => {
             try {
-                console.log('Started refreshing application (/) commands.');
+                console.log('Started refreshing application (/) commands.'.yellow);
 
                 await rest.put(
                     Routes.applicationCommands(config.clientId), {
@@ -29,7 +30,7 @@ module.exports = (client) => {
                     },
                 );
 
-                console.log('Successfully reloaded application (/) commands.');
+                console.log('Successfully reloaded application (/) commands.'.blue);
             } catch (error) {
                 console.error(error);
             }

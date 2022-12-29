@@ -8,7 +8,6 @@ module.exports = {
             option
                 .setName('user')
                 .setDescription('grabs this user')
-                .setRequired(false)
         ),
 
     async execute(interaction) {
