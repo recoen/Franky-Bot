@@ -1,4 +1,4 @@
-<p>Franky is an amazing bot that can almost do anything, he is still underconstruction but he is god tier</p>
+Franky is an amazing bot that can almost do anything, he is still underconstruction but he is god tier
 if you want to invite him just [click Here](https://discord.com/api/oauth2/authorize?client_id=992309600361660466&permissions=1636319099999&scope=applications.commands%20bot) but if you want you can use this code to make your own bot of just use the commands, up to you :)
 
 hope you have an idea what the bot can do :P, enjoy
