@@ -6,8 +6,6 @@ client.timeouts = new Collection()
 
 const fs = require('fs');
 const config = require('./config.json')
-//const SunRodAPI = require('sunrod-api');
-//client.sunrod = new SunRodAPI('z9MwcGD47wWn2mHu5nfprEpPYKC5TPJTk7hcHn8X46nyVQs9U7');
 
 const functions = fs.readdirSync("./functions").filter(file => file.endsWith(".js"));
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
