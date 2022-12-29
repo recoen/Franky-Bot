@@ -7,6 +7,18 @@ client.timeouts = new Collection()
 const fs = require('fs');
 const config = require('./config.json')
 
+const { DisTube } = require("distube");
+const { SpotifyPlugin } = require("@distube/spotify");
+
+module.exports = client;
+
+client.distube = new DisTube(client, {
+    emitNewSongOnly: true,
+    leaveOnFinish: true,
+    emitAddSongWhenCreatingQueue: false,
+    plugins: [new SpotifyPlugin()]
+});
+
 const functions = fs.readdirSync("./functions").filter(file => file.endsWith(".js"));
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 const commandFolders = fs.readdirSync("./commands");
