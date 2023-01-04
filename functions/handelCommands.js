@@ -2,7 +2,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
 const config = require('../config.json')
-const color = require('colors')
+require('colors')
 
 module.exports = (client) => {
     client.handleCommands = async (commandFolders, path) => {
@@ -12,6 +12,7 @@ module.exports = (client) => {
             for (const file of commandFiles) {
                 const command = require(`../commands/${folder}/${file}`);
                 client.commands.set(command.data.name, command);
+                console.log('[COMMANDS] '.grey + `${command.data.name}`.bold + ' was Loaded'.green)
                 client.commandArray.push(command.data.toJSON());
             }
         }
@@ -22,8 +23,6 @@ module.exports = (client) => {
 
         (async () => {
             try {
-                console.log('Started refreshing application (/) commands.'.yellow);
-
                 await rest.put(
                     Routes.applicationCommands(config.clientId), {
                         body: client.commandArray

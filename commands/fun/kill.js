@@ -10,6 +10,8 @@ module.exports = {
         .setDescription('who is ur next target?')
         .setRequired(true)
         ),
+        category: 'Fun',
+        cooldown: 0,
         async execute(interaction) {
             const target = interaction.options.getUser('target').username
             const author = interaction.user.username;

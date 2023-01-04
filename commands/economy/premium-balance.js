@@ -9,7 +9,8 @@ module.exports = {
                 .setName('target')
                 .setDescription('get someones balance')
         ),
-
+        category: 'Economy',
+        cooldown: 0,
     async execute(interaction, client) {
         const user = interaction.options.getUser('target') || interaction.user; return interaction.reply('❌ No user was found');
 

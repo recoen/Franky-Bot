@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const moneyschema = require('../../Schema/moneySchema')
+const economyschema = require('../../schema/economySchema')
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,10 +10,12 @@ module.exports = {
                 .setName('target')
                 .setDescription('see how much another person has')
         ),
+        category: 'Economy',
+        cooldown: 0,
     async execute(interaction) {
         const user = interaction.options.getUser('target') || interaction.user;
         const member = interaction.guild.members.cache.get(user.id)
-        const Data = await moneyschema.findOne({ User: member.id })
+        const Data = await economyschema.findOne({ User: member.id })
 
         if(!Data) return interaction.reply({ content: `sorry you have no money, send a message to get some`, ephemeral: true})
 

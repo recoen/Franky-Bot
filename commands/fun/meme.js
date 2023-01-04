@@ -5,7 +5,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('meme')
         .setDescription('send you memes'),
-
+        category: 'Fun',
+        cooldown: 0,
     async execute(interaction) {
         const embed = new EmbedBuilder()
         const subreddits = ['meme', 'memes'];

@@ -9,7 +9,8 @@ module.exports = {
                 .setName('user')
                 .setDescription('grabs this user')
         ),
-
+        category: 'Tools',
+        cooldown: 0,
     async execute(interaction) {
         const user = interaction.options.getUser('user') || interaction.user;
         const embed = new EmbedBuilder()

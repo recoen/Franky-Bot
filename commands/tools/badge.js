@@ -9,7 +9,8 @@ module.exports = {
                 .setName('target')
                 .setDescription('The Perosn you want to target.')
         ),
-
+        category: 'Tools',
+        cooldown: 0,
     async execute(interaction) {
         const user = interaction.options.getUser('target') || interaction.user;
         const flags = user.flags.toArray();

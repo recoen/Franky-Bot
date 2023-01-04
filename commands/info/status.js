@@ -4,6 +4,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('status')
         .setDescription('shows the status'),
+        category: 'Info',
+        cooldown: 0,
     async execute(interaction, client) {
         if (!interaction.guild) return interaction.reply({ content: ":right: You cannot use the command here!", ephemeral: true })
 
@@ -11,8 +13,6 @@ module.exports = {
         const Days = Math.floor(ToTalSeconds / 86400);
         const Hours = Math.floor(ToTalSeconds / 3600);
         const Minutes = Math.floor(ToTalSeconds / 60);
-
-
 
         const embed = new EmbedBuilder()
             .setColor("Blue")

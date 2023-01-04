@@ -10,6 +10,8 @@ module.exports = {
                 .setName('target')
                 .setDescription('Target to get info on this user')
         ),
+        category: 'Info',
+        cooldown: 0,
     async execute(interaction) {
         let target = interaction.options.getUser('target') || interaction.user;
         let member = interaction.guild.members.cache.get(target.id)

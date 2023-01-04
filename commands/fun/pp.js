@@ -9,7 +9,8 @@ module.exports = {
             .setName('target')
             .setDescription('Targets gay percentage')
     ),
-
+    category: 'Fun',
+    cooldown: 0,
     async execute(interaction) {
         let user = interaction.options.getUser('target') || interaction.user;
         let random = Math.floor(Math.random() * 10) + 1

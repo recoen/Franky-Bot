@@ -10,6 +10,8 @@ module.exports = {
         .setDescription('What are you changing your nickname to?')
         .setRequired(true)
     ),
+    category: 'Tools',
+    cooldown: 0,
     async execute(interaction) {
         let nickname = interaction.options.getString('nickname');
         if (!nickname) reason = "No nickname was provided."

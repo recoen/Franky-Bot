@@ -1,12 +1,14 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionsBitField } = require("discord.js");
+const config = require('../../config.json')
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('topguilds')
         .setDescription('Shows the top guilds the bot is in (OWNER ONLY)'),
-
+    category: 'Owner',
+    cooldown: 0,
     async execute(interaction, client) {
-        if (!['692197998939209789', '1009220856188240012'].includes(interaction.user.id)) return interaction.reply({ content: `you can't use this command only the the dev can use it`, ephemeral: true })
+        if (![config.yourId].includes(interaction.user.id)) return interaction.reply({ content: `you can't use this command only the the dev can use it`, ephemeral: true })
         const guilds = client.guilds.cache
             .sort((a, b) => b.memberCount - a.memberCount)
             .first(10);

@@ -4,7 +4,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('69420')
         .setDescription('try to get the funny number'),
-
+        category: 'Fun',
+        cooldown: 0,
     async execute(interaction) {
         let number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         let random1 = Math.floor(Math.random() * number.length);

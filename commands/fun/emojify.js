@@ -10,7 +10,8 @@ module.exports = {
             .setDescription('changes this text to emojis')
             .setRequired(true)
     ),
-
+    category: 'Fun',
+    cooldown: 0,
     async execute(interaction) {
         const specialCodes = {
             '0': ':zero:',

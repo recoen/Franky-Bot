@@ -9,6 +9,8 @@ module.exports = {
             .setName('user')
             .setDescription('Select a user')
         ),
+        category: 'Tools',
+        cooldown: 0,
     async execute(interaction) {
         const user = interaction.options.getUser('user') || interaction.user;
 

@@ -12,7 +12,8 @@ module.exports = {
                 .setRequired(true)
                 .setMaxLength(15)
         ),
-
+        category: 'Fun',
+        cooldown: 0,
     async execute(interaction) {
         const text = interaction.options.getString('text')
 

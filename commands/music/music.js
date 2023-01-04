@@ -45,6 +45,8 @@ module.exports = {
                         )
                 )
         ),
+        category: 'Music',
+        cooldown: 0,
     async execute(interaction) {
         const { options, member, guild, channel } = interaction;
 
