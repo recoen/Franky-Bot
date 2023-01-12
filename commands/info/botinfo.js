@@ -30,7 +30,7 @@ module.exports = {
                 },
                 {
                     name: `Bot Ping`,
-                    value: `${ping}`,
+                    value: `${ping}ms`,
                     inline: true
                 },
                 {
