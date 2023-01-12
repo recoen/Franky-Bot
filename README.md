@@ -10,3 +10,6 @@ Step to get it working
 <br>-now you can setup MongoDB [Watch This Video](https://youtu.be/sng1vw9l7J0) to setup MongoDB and you will need to setup ffmpeg on your pc [Watching This Video](https://youtu.be/IECI72XEox0) tp setup ffmpeg
 
 and your done enjoy the Bot, if you have any problems go to my server also if you want to get the lastest updates on Franky -> [Click Here](https://discord.gg/pZwV7YXztt)
+
+
+DO NOT CHANGE THE BOTINFO COMMAND, give me credit
