@@ -13,7 +13,7 @@ module.exports = {
         });
 
         if(mongoose.connect) {
-            console.log('MongoDB connection succesful'.green)
+            console.log('MongoDB connection successfull'.green)
         } else {
             console.log('MongoDB couldnt connect'.red)
         }

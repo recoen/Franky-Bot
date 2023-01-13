@@ -3,10 +3,42 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
-        .setDescription('Help to find all commands'),
-        category: 'Tools',
-        cooldown: 0,
+        .setDescription('Help to find all commands')
+        .addSubcommand(
+            subcommand => subcommand
+                .setName('home')
+                .setDescription('to see what buttons do')
+        )
+        .addSubcommand(
+            subcommand => subcommand
+                .setName('fun')
+                .setDescription('all Fun commands')
+        )
+        .addSubcommand(
+            subcommand => subcommand
+                .setName('music')
+                .setDescription('all music commands')
+        )
+        .addSubcommand(
+            subcommand => subcommand
+                .setName('economy')
+                .setDescription('all economy commands')
+        )
+        .addSubcommand(
+            subcommand => subcommand
+                .setName('info')
+                .setDescription('all info commands')
+        )
+        .addSubcommand(
+            subcommand => subcommand
+                .setName('tools')
+                .setDescription('all tool commands')
+        ),
+    category: 'Tools',
+    cooldown: 0,
     async execute(interaction, client) {
+        //other
+        const sub = interaction.options.getSubcommand()
         //buttons
         const row = new ActionRowBuilder()
             .addComponents(
@@ -19,9 +51,9 @@ module.exports = {
                     .setEmoji('🎵')
                     .setStyle(ButtonStyle.Success),
                 new ButtonBuilder()
-                    .setCustomId('owner')
-                    .setEmoji('👑')
-                    .setStyle(ButtonStyle.Danger),
+                    .setCustomId('economy')
+                    .setEmoji('🪙')
+                    .setStyle(ButtonStyle.Success),
                 new ButtonBuilder()
                     .setCustomId('info')
                     .setEmoji('🔍')
@@ -36,15 +68,7 @@ module.exports = {
         const help = new EmbedBuilder()
             .setColor('Random')
             .setTitle('Help at your service')
-            .setDescription(`
-                 Click the bottons to get help
-                 btw if the buttons dont work, just use the sub commands eg '/help fun'
-                 🤣 - Fun Command List
-                 👑 - Owner Command List
-                 🔍 - Info Command List
-                 ⛏️ - Tools Command List
-                 🎵 - Music Command List
-             `)
+            .setDescription(`Click the bottons to get help\nbtw if the buttons dont work, just use the sub commands eg '/help fun'\n🤣 - Fun Command List\n👑 - Owner Command List\n🔍 - Info Command List\n⛏️ - Tools Command List\n🎵 - Music Command List`)
             .setFooter({ text: `${interaction.guild.name}` })
             .setTimestamp()
 
@@ -62,10 +86,10 @@ module.exports = {
             .setFooter({ text: `${interaction.guild.name}` })
             .setTimestamp()
 
-        const owner = new EmbedBuilder()
+        const economy = new EmbedBuilder()
             .setColor('Gold')
-            .setTitle('Owner Commands')
-            .setDescription(`${client.commands.filter(cmd => cmd.category === 'Owner').map(cmd => `**/${cmd.data.name}** | ${cmd.data.description}`).join(' \n')}`)
+            .setTitle('Economy Commands')
+            .setDescription(`${client.commands.filter(cmd => cmd.category === 'Economy').map(cmd => `**/${cmd.data.name}** | ${cmd.data.description}`).join(' \n')}`)
             .setFooter({ text: `${interaction.guild.name}` })
             .setTimestamp()
 
@@ -76,14 +100,36 @@ module.exports = {
             .setFooter({ text: `${interaction.guild.name}` })
             .setTimestamp()
 
-            const music = new EmbedBuilder()
+        const music = new EmbedBuilder()
             .setColor('Purple')
             .setTitle('Music Commands')
             .setDescription(`${client.commands.filter(cmd => cmd.category === 'Music').map(cmd => `**/${cmd.data.name}** | ${cmd.data.description}`).join(' \n')}`)
             .setFooter({ text: `${interaction.guild.name}` })
             .setTimestamp()
 
-        await interaction.reply({ embeds: [help], components: [row] })
+        if (sub === 'home') {
+            interaction.reply({ embeds: [help], components: [row] })
+        }
+
+        if (sub === 'fun') {
+            interaction.reply({ embeds: [fun], components: [row] })
+        }
+
+        if (sub === 'music') {
+            interaction.reply({ embeds: [music], components: [row] })
+        }
+
+        if (sub === 'economy') {
+            interaction.reply({ embeds: [economy], components: [row] })
+        }
+
+        if (sub === 'info') {
+            interaction.reply({ embeds: [info], components: [row] })
+        }
+
+        if (sub === 'tools') {
+            interaction.reply({ embeds: [tools], components: [row] })
+        }
 
         const collector = await interaction.channel.createMessageComponentCollector();
 
@@ -100,11 +146,11 @@ module.exports = {
                 }
                 return i.update({ embeds: [info], components: [row] })
             }
-            if (i.customId === 'owner') {
+            if (i.customId === 'economy') {
                 if (i.user.id !== interaction.user.id) {
                     return i.reply({ content: `Only ${interaction.user.tag} can use this command`, ephemeral: true })
                 }
-                return i.update({ embeds: [owner], components: [row] })
+                return i.update({ embeds: [economy], components: [row] })
             }
             if (i.customId === 'tools') {
                 if (i.user.id !== interaction.user.id) {

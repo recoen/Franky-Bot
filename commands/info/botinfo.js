@@ -6,6 +6,8 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('botinfo')
     .setDescription('info about the bot'),
+    category: 'Info',
+    cooldown: 0,
     async execute(interaction, client) {
         const command = client.commands.size
         const servers = await client.guilds.cache.size

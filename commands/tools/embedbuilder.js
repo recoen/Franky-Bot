@@ -25,7 +25,7 @@ module.exports = {
                     { name: 'Gold', value: 'Gold' },
                     { name: 'Green', value: 'Green' },
                     { name: 'Grey', value: 'Grey' },
-                    { name: 'Greyply', value: 'Greyply' },
+                    { name: 'Greyple', value: 'Greyple' },
                     { name: 'LightGrey', value: 'LightGrey' },
                     { name: 'LuminousVividPink', value: 'LuminousVividPink' },
                     { name: 'Navy', value: 'Navy' },
@@ -74,6 +74,8 @@ module.exports = {
                 .setDescription('image of the embed (bottom side image)')
         ),
         */
+       category: 'Tools',
+       cooldown: 0,
     async execute(interaction, client) {
         const channel = interaction.options.getChannel('channel');
         const color = interaction.options.getString('color');
