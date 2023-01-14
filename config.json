@@ -4,5 +4,13 @@
     "errChannel": "",
     "token": "",
     "mongodb": "",
-    "yourId": ""
+    "yourId": "",
+    "freeStuffAPIKey": "",
+    "emojis": {
+        "nothing": "",
+        "steam": "",
+        "epic": "",
+        "gog": "",
+        "humble": ""
+    }
 }
