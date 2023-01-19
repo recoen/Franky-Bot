@@ -31,6 +31,11 @@ module.exports = {
         )
         .addSubcommand(
             subcommand => subcommand
+                .setName('nsfw')
+                .setDescription('all nsfw commands')
+        )
+        .addSubcommand(
+            subcommand => subcommand
                 .setName('tools')
                 .setDescription('all tool commands')
         ),
@@ -63,12 +68,19 @@ module.exports = {
                     .setEmoji('⛏️')
                     .setStyle(ButtonStyle.Success),
             );
+        const row2 = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setCustomId('nsfw')
+                    .setEmoji('🔞')
+                    .setStyle(ButtonStyle.Danger)
+            )
 
         //Embeds
         const help = new EmbedBuilder()
             .setColor('Random')
             .setTitle('Help at your service')
-            .setDescription(`Click the bottons to get help\nbtw if the buttons dont work, just use the sub commands eg '/help fun'\n🤣 - Fun Command List\n👑 - Owner Command List\n🔍 - Info Command List\n⛏️ - Tools Command List\n🎵 - Music Command List`)
+            .setDescription(`Click the bottons to get help\nbtw if the buttons dont work, just use the sub commands eg '/help fun'\n🤣 - Fun Command List\n🪙 - Economy Command List\n🔍 - Info Command List\n⛏️ - Tools Command List\n🎵 - Music Command List\n🔞 - NSFW Command List`)
             .setFooter({ text: `${interaction.guild.name}` })
             .setTimestamp()
 
@@ -76,6 +88,13 @@ module.exports = {
             .setColor('Yellow')
             .setTitle('Fun Commands')
             .setDescription(`${client.commands.filter(cmd => cmd.category === 'Fun').map(cmd => `**/${cmd.data.name}** | ${cmd.data.description}`).join(' \n')}`)
+            .setFooter({ text: `${interaction.guild.name}` })
+            .setTimestamp()
+
+        const nsfw = new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('nsfw Commands')
+            .setDescription(`${client.commands.filter(cmd => cmd.category === 'nsfw').map(cmd => `**/${cmd.data.name}** | ${cmd.data.description}`).join(' \n')}`)
             .setFooter({ text: `${interaction.guild.name}` })
             .setTimestamp()
 
@@ -108,27 +127,31 @@ module.exports = {
             .setTimestamp()
 
         if (sub === 'home') {
-            interaction.reply({ embeds: [help], components: [row] })
+            interaction.reply({ embeds: [help], components: [row, row2] })
         }
 
         if (sub === 'fun') {
-            interaction.reply({ embeds: [fun], components: [row] })
+            interaction.reply({ embeds: [fun], components: [row, row2] })
         }
 
         if (sub === 'music') {
-            interaction.reply({ embeds: [music], components: [row] })
+            interaction.reply({ embeds: [music], components: [row, row2] })
         }
 
         if (sub === 'economy') {
-            interaction.reply({ embeds: [economy], components: [row] })
+            interaction.reply({ embeds: [economy], components: [row, row2] })
         }
 
         if (sub === 'info') {
-            interaction.reply({ embeds: [info], components: [row] })
+            interaction.reply({ embeds: [info], components: [row, row2] })
         }
 
         if (sub === 'tools') {
-            interaction.reply({ embeds: [tools], components: [row] })
+            interaction.reply({ embeds: [tools], components: [row, row2] })
+        }
+
+        if (sub === 'nsfw') {
+            interaction.reply({ embeds: [nsfw], components: [row, row2] })
         }
 
         const collector = await interaction.channel.createMessageComponentCollector();
@@ -138,31 +161,37 @@ module.exports = {
                 if (i.user.id !== interaction.user.id) {
                     return i.reply({ content: `Only ${interaction.user.tag} can use these buttons`, ephemeral: true })
                 }
-                return i.update({ embeds: [fun], components: [row] })
+                return i.update({ embeds: [fun], components: [row, row2] })
             }
             if (i.customId === 'info') {
                 if (i.user.id !== interaction.user.id) {
                     return i.reply({ content: `Only ${interaction.user.tag} can use this command`, ephemeral: true })
                 }
-                return i.update({ embeds: [info], components: [row] })
+                return i.update({ embeds: [info], components: [row, row2] })
             }
             if (i.customId === 'economy') {
                 if (i.user.id !== interaction.user.id) {
                     return i.reply({ content: `Only ${interaction.user.tag} can use this command`, ephemeral: true })
                 }
-                return i.update({ embeds: [economy], components: [row] })
+                return i.update({ embeds: [economy], components: [row, row2] })
             }
             if (i.customId === 'tools') {
                 if (i.user.id !== interaction.user.id) {
                     return i.reply({ content: `Only ${interaction.user.tag} can use this command`, ephemeral: true })
                 }
-                return i.update({ embeds: [tools], components: [row] })
+                return i.update({ embeds: [tools], components: [row, row2] })
             }
             if (i.customId === 'music') {
                 if (i.user.id !== interaction.user.id) {
                     return i.reply({ content: `Only ${interaction.user.tag} can use this command`, ephemeral: true })
                 }
-                return i.update({ embeds: [music], components: [row] })
+                return i.update({ embeds: [music], components: [row, row2] })
+            }
+            if (i.customId === 'nsfw') {
+                if (i.user.id !== interaction.user.id) {
+                    return i.reply({ content: `Only ${interaction.user.tag} can use this command`, ephemeral: true })
+                }
+                return i.update({ embeds: [nsfw], components: [row, row2] })
             }
         })
     }
