@@ -18,8 +18,10 @@ module.exports = {
             await command.execute(interaction, client);
         } catch (error) {
             console.log(error);
+            const error_embed = new EmbedBuilder()
+                .setDescription(`There was an error while executing this command!\n\`\`\`${error || 'Cant find anything wrong'}\`\`\``)
             await interaction.reply({
-                content: 'There was an error while executing this command!',
+                embeds: [error_embed],
                 ephemeral: true
             });
         }
