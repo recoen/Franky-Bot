@@ -10,7 +10,7 @@ module.exports = {
                 .setName('text')
                 .setDescription('input text to convert')
                 .setRequired(true)
-                .setMaxLength(15)
+                .setMaxLength(25)
         ),
         category: 'Fun',
         cooldown: 0,

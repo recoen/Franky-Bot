@@ -6,7 +6,7 @@ module.exports = async (client) => {
     const Embed = new EmbedBuilder()
         .setColor('NotQuiteBlack')
         .setTimestamp()
-        .setFooter({text: "Anti crash by xrgvn"})
+        .setFooter({text: "Anti crash"})
         .setTitle("⚠️ | Error Encountered")
 
     process.on("unhandledRejection", (reason, p) => {

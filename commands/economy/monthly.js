@@ -8,7 +8,7 @@ module.exports = {
     category: 'Economy',
     cooldown: 2628000000,
     async execute(interaction) {
-            const give = Math.floor(Math.random() * 10000) + 1000
+            const give = Math.floor(Math.random() * 10000) + 10000
             const data = await economyschema.findOne({ User: interaction.user.id })
             if (!data) return
             if (data.Money + give) {

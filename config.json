@@ -6,12 +6,5 @@
     "mongodb": "",
     "yourId": "",
     "freeStuffAPIKey": "",
-    "sunRodAPIKey": "",
-    "emojis": {
-        "nothing": "",
-        "steam": "",
-        "epic": "",
-        "gog": "",
-        "humble": ""
-    }
+    "sunRodAPIKey": ""
 }
