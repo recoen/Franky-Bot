@@ -1,10 +1,22 @@
 {
-    "clientId": "",
-    "guildId": "",
-    "errChannel": "",
-    "token": "",
     "mongodb": "",
+    "port": "6969",
+    "errChannel": "",
     "yourId": "",
-    "freeStuffAPIKey": "",
-    "sunRodAPIKey": ""
+    "color": {
+        "embed": "#2f3136",
+        "no": "#FA0000",
+        "yes": "#00FF00"
+    },
+    "discord": {
+        "clientId": "",
+        "guildId": "",
+        "token": "",
+        "invite": "https://discord.gg/pZwV7YXztt"
+    },
+    "apiKey": {
+        "freeStuff": "",
+        "openai": "",
+        "SunRod": ""
+    }
 }
