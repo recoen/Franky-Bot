@@ -4,7 +4,7 @@ if you want to invite him just [click Here](https://discord.com/api/oauth2/autho
 Step to get it working
 https://youtu.be/Sf0o3IYmPfc
 
-and your done enjoy the Bot, if you have any problems/and idea go to my server also if you want to get the lastest updates on Franky -> [Click Here](https://discord.gg/pZwV7YXztt)
+and your done enjoy the Bot, if you have any problems/and idea go to my server also if you want to get the lastest updates on Franky -> [Click Here](https://discord.gg/pZwV7YXztt) OUTDATED
 
 
 DO NOT CHANGE THE BOTINFO COMMAND, give me credit
