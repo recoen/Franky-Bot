@@ -1,0 +1,29 @@
+{
+    "mongodb": "",
+    "port": "",
+    
+    
+    "color": {
+        "embed": "#2f3136",
+        "no": "#FA0000",
+        "yes": "#00FF00"
+    },
+    "discord": {
+        "clientId": "",
+        "guildId": "",
+        "token": "",
+        "invite": "https://discord.gg/pZwV7YXztt",
+        "yourId": "",
+        "errChannel": "",
+        "reportChannel": ""
+    },
+    "apiKey": {
+        "freeStuff": "",
+        "openai": "",
+        "SunRod": ""
+    },
+    "spotify": {
+        "clientId": "",
+        "clientSecret": ""
+    }
+}
