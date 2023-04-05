@@ -1,9 +1,12 @@
-const { Client, Collection, EmbedBuilder } = require(`discord.js`);
+const { Client, Collection, EmbedBuilder, Events, ChannelType, PermissionFlagsBits } = require(`discord.js`);
 const client = new Client({ intents: 3276799 });
 
 const fs = require('fs');
 const config = require('./config.json')
+const em = require('./emoji.json')
 require('colors')
+const moment = require('moment')
+require("moment-duration-format");
 //const SunRodAPI = require('sunrod-api');
 //client.sunrod = new SunRodAPI(config.sunRodAPIKey);
 
@@ -24,6 +27,8 @@ const commandFolders = fs.readdirSync("./src/commands");
     client.login(config.discord.token)
 })();
 
+
+
 //music (lavalink)
 const { Manager } = require('erela.js');
 const Spotify = require("erela.js-spotify");
@@ -32,12 +37,12 @@ const Deezer = require("erela.js-deezer");
 const AppleMusic = require("erela.js-apple");
 const clientID = config.spotify.clientId
 const clientSecret = config.spotify.clientSecret
-const yes = new EmbedBuilder()
-    .setColor('Green')
+
+const embed = new EmbedBuilder()
+    .setColor(config.color.embed)
     .setTitle('Music')
-const no = new EmbedBuilder()
-    .setColor('Red')
-    .setTitle('Music')
+
+    
 if (clientID && clientSecret) {
     client.manager = new Manager({
         plugins: [
@@ -65,14 +70,26 @@ if (clientID && clientSecret) {
         .on("nodeConnect", node => console.log(`[MUSIC] `.red + `Lavalink`.bold + ` Connection Successful`.green + '\n '))
         .on("nodeError", (node, error) => console.log(`[MUSIC] `.red + `Lavalink`.bold + ` Couldn't Connect`.red + `\n`))
         .on("trackStart", (player, track) => {
+            const dur = moment.duration(track.duration).format(" D[d], H[h], m[m], s[s]")
             client.channels.cache
                 .get(player.textChannel)
-                .send({ embeds: [yes.setDescription(`Now playing: ${track.title}`)] });
+                .send({
+                    embeds: [embed
+                        .setURL(track.uri)
+                        .setFields(
+                            { name: `🎵|Title`, value: `${track.title}`, inline: true },
+                            { name: `🎬|Author`, value: `${track.author}`, inline: true },
+                            { name: `${em.other.clock}|Duraction`, value: `${dur}`, inline: true },
+                        )
+                        .setColor(config.color.embed)
+                        //.setThumbnail(track.displayThumbnail())
+                    ]
+                });
         })
         .on("queueEnd", (player) => {
             client.channels.cache
                 .get(player.textChannel)
-                .send({ embeds: [no.setDescription("Queue has ended.")] })
+                .send({ embeds: [embed.setDescription("Queue has ended.").setColor('Red').setFields()] })
 
             player.destroy();
         });
@@ -99,15 +116,28 @@ if (clientID && clientSecret) {
         .on("nodeConnect", node => console.log(`[MUSIC] `.red + `Lavalink`.bold + ` Connection Successful`.green + '\n '))
         .on("nodeError", (node, error) => console.log(`[MUSIC] `.red + `Lavalink`.bold + ` Couldn't Connect`.red + `\n`))
         .on("trackStart", (player, track) => {
+            const dur = moment.duration(track.duration).format(" D[d], H[h], m[m], s[s]")
             client.channels.cache
                 .get(player.textChannel)
-                .send({ embeds: [yes.setDescription(`Now playing: ${track.title}`)] });
+                .send({
+                    embeds: [embed
+                        .setURL(track.uri)
+                        .setFields(
+                            { name: `🎵|Title`, value: `${track.title}`, inline: true },
+                            { name: `🎬|Author`, value: `${track.author}`, inline: true },
+                            { name: `${em.other.clock}|Duraction`, value: `${dur}`, inline: true },
+                        )
+                        .setColor(config.color.embed)
+                        //.setThumbnail(track.displayThumbnail())
+                    ]
+                });
         })
         .on("queueEnd", (player) => {
             client.channels.cache
                 .get(player.textChannel)
-                .send({ embeds: [no.setDescription("Queue has ended.")] })
+                .send({ embeds: [embed.setDescription("Queue has ended.").setColor('Red').setFields()] })
 
+            player.destroy();
         });
 }
 
